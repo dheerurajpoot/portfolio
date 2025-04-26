@@ -21,7 +21,7 @@ function PortfolioProjects() {
 			title: "QuoteAr: Social Media Automation",
 			description:
 				"A Web application that generates inspirational or custom quotes and automatically posts them to connected social media platforms (Facebook, Instagram) on scheduled intervals. Built with Next.js and integrated with Facebook Graph API, it eliminates the need for manual content creation and scheduling. Includes custom scheduling options, and social platform auth. Ideal for content creators, influencers, and digital marketers looking to streamline their daily posting.",
-			image: "./quoteart.png",
+			image: "https://indianscope.com/wp-content/uploads/2025/04/quoteart-compressed-scaled.jpg",
 			tags: ["Next.js", "Node.js", "Node cron"],
 			githubUrl: "https://github.com/dheerurajpoot/quote-generator",
 			liveUrl: "https://www.quoteart.xyz",
@@ -32,7 +32,7 @@ function PortfolioProjects() {
 			title: "EVTN: Digital Marketplace",
 			description:
 				"EVTN is a digital marketplace built with Next.js where users can buy and sell digital assets like websites, Instagram pages, and Facebook pages. It features secure user authentication, asset listing, and admin management, offering a smooth and responsive user experience. Designed for creators and entrepreneurs, EVTN simplifies digital asset trading with a clean UI and efficient workflow.",
-			image: "./evtn.png",
+			image: "https://indianscope.com/wp-content/uploads/2025/04/evtn-compressed-scaled.jpg",
 			tags: ["Next.js", "Node.js", "Developer Tools"],
 			githubUrl: "https://github.com/dheerurajpoot/tech_bazar",
 			liveUrl: "https://www.evtn.org",
