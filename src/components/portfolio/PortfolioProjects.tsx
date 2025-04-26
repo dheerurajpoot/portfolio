@@ -57,7 +57,7 @@ function PortfolioProjects() {
 			image: "/api/placeholder/400/300",
 			tags: ["Next.js", "Typescript", "Desktop App"],
 			githubUrl: "https://github.com/dheerurajpoot/compressall",
-			liveUrl: "#",
+			liveUrl: "https://compressall.vercel.app/",
 			featured: false,
 			icon: <PenTool className='w-5 h-5' />,
 		},
