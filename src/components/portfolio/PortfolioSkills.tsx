@@ -1,13 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-	Code,
-	Terminal,
-	Database,
-	Server,
-	GitBranch,
-	Globe,
-} from "lucide-react";
-import { Card, CardBody, CardHeader } from "@traken-ui/react";
+import { Code, Database, Server, Github } from "lucide-react";
 
 function PortfolioSkills() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -17,38 +9,18 @@ function PortfolioSkills() {
 		return () => clearTimeout(timeout);
 	}, []);
 
-	// Tech categories with their respective technologies
-	const techCategories = [
-		{
-			title: "Languages",
-			icon: <Code className='w-5 h-5 text-indigo-400' />,
-			skills: ["JavaScript", "TypeScript"],
-		},
-		{
-			title: "System",
-			icon: <Terminal className='w-5 h-5 text-indigo-400' />,
-			skills: ["Windows", "Mac"],
-		},
-		{
-			title: "Backend",
-			icon: <Server className='w-5 h-5 text-indigo-400' />,
-			skills: ["Node.js", "Express", "REST APIs"],
-		},
-		{
-			title: "Frontend",
-			icon: <Globe className='w-5 h-5 text-indigo-400' />,
-			skills: ["React", "Next.js", "Tailwind CSS"],
-		},
-		{
-			title: "Version Control",
-			icon: <GitBranch className='w-5 h-5 text-indigo-400' />,
-			skills: ["Git", "GitHub"],
-		},
-		{
-			title: "Databases",
-			icon: <Database className='w-5 h-5 text-indigo-400' />,
-			skills: ["MySQL", "PostgreSQL", "MongoDB"],
-		},
+	const skills = [
+		{ name: "NextJS", icon: Code, category: "Backend" },
+		{ name: "React", icon: Code, category: "Frontend" },
+		{ name: "JavaScript", icon: Code, category: "Frontend" },
+		{ name: "NodeJS", icon: Server, category: "Backend" },
+		{ name: "Express", icon: Server, category: "Backend" },
+		{ name: "MongoDB", icon: Database, category: "Database" },
+		{ name: "MySQL", icon: Database, category: "Database" },
+		{ name: "PostgreSQL", icon: Database, category: "Database" },
+		{ name: "Git", icon: Code, category: "Tools" },
+		{ name: "Github", icon: Github, category: "Tools" },
+		{ name: "Postman", icon: Server, category: "Tools" },
 	];
 
 	return (
@@ -74,46 +46,47 @@ function PortfolioSkills() {
 						<span className='text-indigo-400'>Work With</span>
 					</h2>
 
-					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-4 md:gap-6'>
-						{techCategories.map((category, index) => (
-							<Card
+					{/* Optional: Skills by Category */}
+					<div className='my-16'>
+						<div className='flex flex-wrap justify-center gap-4'>
+							{[
+								...new Set(
+									skills.map((skill) => skill.category)
+								),
+							].map((category, index) => (
+								<span
+									key={index}
+									className='px-4 py-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full text-indigo-400 text-sm border border-indigo-400/30 hover:border-indigo-400/50 transition-all cursor-pointer'>
+									{category}
+								</span>
+							))}
+						</div>
+					</div>
+
+					{/* Skills Grid */}
+					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
+						{skills.map((skill, index) => (
+							<div
 								key={index}
-								className={`bg-gray-900 bg-opacity-70 backdrop-blur-sm border border-gray-800 rounded-xl p-5 md:p-6 hover:border-indigo-500 transition-all duration-500 transform ${
-									isVisible
-										? "translate-y-0 opacity-100"
-										: "translate-y-12 opacity-0"
-								}`}>
-								<CardHeader className='bg-transparent border-0 shadow-none p-0'>
-									<div className='flex items-center mb-4'>
-										<div className='p-2 mr-3 text-gray-200 bg-gray-800 rounded-lg'>
-											{category.icon}
-										</div>
-										<h3 className='text-lg text-gray-200 md:text-xl font-semibold'>
-											{category.title}
+								className='bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 group hover:bg-white/10 hover:border-indigo-400/30 transition-all duration-300 hover:transform hover:scale-105'>
+								<div className='flex items-center'>
+									<skill.icon
+										className='text-indigo-400 mr-4 transition-colors'
+										size={32}
+									/>
+									<div>
+										<h3 className='text-white font-semibold text-lg group-hover:text-indigo-400 transition-colors'>
+											{skill.name}
 										</h3>
+										<p className='text-gray-400 text-sm group-hover:text-gray-300 transition-colors'>
+											{skill.category}
+										</p>
 									</div>
-								</CardHeader>
-								<CardBody className='bg-transparent border-0 shadow-none p-0'>
-									<div className='flex flex-wrap gap-2 text-gray-200'>
-										{category.skills.map(
-											(skill, skillIndex) => (
-												<span
-													key={skillIndex}
-													className='bg-gray-800 hover:bg-indigo-900 text-xs md:text-sm py-1 px-3 rounded-full transition-colors duration-300'>
-													{skill}
-												</span>
-											)
-										)}
-									</div>
-								</CardBody>
-							</Card>
+								</div>
+							</div>
 						))}
 					</div>
 				</div>
-
-				{/* Glowing orb background effects - improved positioning for responsiveness */}
-				<div className='absolute -top-40 right-0 md:-right-40 w-72 md:w-96 h-72 md:h-96 bg-indigo-600 opacity-5 rounded-full blur-3xl pointer-events-none'></div>
-				<div className='absolute -bottom-40 left-0 md:-left-40 w-72 md:w-96 h-72 md:h-96 bg-indigo-600 opacity-5 rounded-full blur-3xl pointer-events-none'></div>
 			</div>
 		</section>
 	);
