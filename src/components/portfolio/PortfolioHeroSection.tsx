@@ -56,8 +56,8 @@ function PortfolioHero() {
 	return (
 		<section
 			id='home'
-			className='relative flex  items-center justify-center w-full bg-black text-white py-18 md:py-24 lg:py-32 overflow-hidden'>
-			<div className='max-w-[768px] w-full xl:max-w-[1080px] flex flex-col items-center md:flex-row md:items-start md:justify-center gap-8 md:gap-12 px-4 sm:px-6 z-10'>
+			className='relative flex items-center justify-center w-full bg-black text-white py-18 md:py-24 lg:py-32 overflow-hidden'>
+			<div className='max-w-[768px] w-full xl:max-w-[1080px] flex flex-col items-center md:flex-row md:justify-between gap-8 md:gap-12 px-4 sm:px-6 z-10'>
 				{/* Left Content */}
 				<Card
 					className={`w-full bg-transparent flex flex-col items-center md:items-start md:w-1/2 transition-all duration-1000 transform ${
@@ -132,7 +132,7 @@ function PortfolioHero() {
 							? "translate-y-0 opacity-100"
 							: "translate-y-12 opacity-0"
 					}`}>
-					<div className='relative w-60 h-60 mx-auto md:mx-0 md:ml-auto sm:mt-10'>
+					<div className='relative w-96 h-96 mx-auto sm:mt-10'>
 						<div className='absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500'>
 							<div className='absolute inset-1 rounded-full bg-black flex items-center justify-center overflow-hidden'>
 								<div

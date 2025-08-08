@@ -31,7 +31,7 @@ function NavbarPortfolio() {
 
 	return (
 		<header
-			className={`w-full bg-transparent fixed top-0 left-0 backdrop-blur-2xl shadow-md z-50 md:px-8`}>
+			className={`w-full bg-transparent fixed top-0 left-0 backdrop-blur-2xl shadow-md z-50 px-4 md:px-8`}>
 			{/* Desktop Navbar */}
 			<div className='max-w-[768px] w-full xl:max-w-[1080px] mx-auto px-2 sm:px-8 lg:px-10 py-4 flex justify-between items-center'>
 				{/* Logo and Links */}

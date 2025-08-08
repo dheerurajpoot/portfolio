@@ -2,16 +2,17 @@ import { Code, Server, Github, ExternalLink } from "lucide-react";
 import quoteart from "/quoteart.jpg";
 import toolhub from "/toolhub.jpg";
 import wordfinder from "/findwordfinder.jpg";
+import library from "/library.jpg";
 
 const projects = [
 	{
 		id: 1,
 		title: "QuoteArt.xyz",
 		description:
-			"A Web application that generates inspirational or custom quotes and automatically posts them to connected social media platforms (Facebook, Instagram) on scheduled intervals. Built with Next.js and integrated with Facebook Graph API, it eliminates the need for manual content creation and scheduling. Includes custom scheduling options, and social platform auth. Ideal for content creators, influencers, and digital marketers looking to streamline their daily posting.",
+			"A Web application that generates inspirational quotes and automatically posts them to connected social media platforms on scheduled intervals. Built with Next.js and integrated with Facebook Graph API, it eliminates the need for manual content creation and scheduling. Includes custom scheduling options, and social platform auth. Ideal for content creators, influencers",
 		tech: ["NextJS", "Tailwind", "NodeJS", "MongoDB", "Git", "Github"],
 		status: "Completed",
-		category: "game",
+		category: "web app",
 		features: [
 			"Auto Quote Image Generator",
 			"Auto Social Media Poster",
@@ -28,6 +29,36 @@ const projects = [
 	},
 	{
 		id: 2,
+		title: "Community Library",
+		description:
+			"A full-stack web platform where users can list their books for others to borrow, fostering a community-driven sharing system. Includes an intuitive admin panel for managing users, books, and borrow requests. Integrated with email notifications to keep users informed about borrow/return updates. Designed for book lovers who want to share and discover books locally without commercial rentals.",
+		tech: [
+			"ReactJS",
+			"Tailwind",
+			"NodeJS",
+			"ExpressJS",
+			"MongoDB",
+			"Git",
+			"Github",
+		],
+		status: "Completed",
+		category: "web app",
+		features: [
+			"User Book Listing",
+			"Borrow & Return System",
+			"Admin Panel for Management",
+			"Email Notification Integration",
+			"User Authentication & Authorization",
+			"Responsive Design",
+			"Book Search & Filters",
+			"Borrow History Tracking",
+		],
+		github: "https://github.com/dheerurajpoot/community-library",
+		live: "https://community-library-two.vercel.app",
+		image: library,
+	},
+	{
+		id: 3,
 		title: "FindwordFinder.com",
 		description:
 			"FindWordFinder.com is a word discovery and word game support platform designed to help users enhance their vocabulary, solve puzzles, and win word games like Scrabble, Wordle, and crosswords. The tool allows users to input letters, prefixes, or suffixes and instantly generate meaningful words from a vast dictionary database. It's an essential resource for word game enthusiasts, students, and language learners.",
@@ -41,7 +72,7 @@ const projects = [
 			"Github",
 		],
 		status: "Completed",
-		category: "web",
+		category: "web app",
 		features: [
 			"Smart Word Finder",
 			"Fun Word Games",
@@ -56,15 +87,14 @@ const projects = [
 		image: wordfinder,
 	},
 	{
-		id: 3,
+		id: 4,
 		title: "SMMGarden.com",
 		description:
 			"SMMGarden.com is a comprehensive web application offering 50+ powerful online tools including calculators, converters, generators, and productivity utilities—all under one roof. Built with performance and user experience in mind, the platform serves as a go-to resource for both everyday users and professionals looking for quick solutions without installing any software.",
 		tech: ["NextJS", "Tailwind", "NodeJS", "MongoDB", "Git", "Github"],
 		status: "Completed",
-		category: "web",
+		category: "web app",
 		features: [
-			"Modern UI/UX",
 			"50+ useful tools",
 			"SEO-optimized for better visibility",
 			"Responsive Design",
@@ -73,7 +103,6 @@ const projects = [
 			"Built for productivity",
 			"No login or installation required",
 			"Multiple tools in one place",
-			"Easy to use",
 		],
 		github: "https://github.com/dheerurajpoot/thetoolshub",
 		live: "https://www.smmgarden.com",
@@ -100,7 +129,7 @@ function ProjectsSection() {
 						{projects.map((project) => (
 							<div
 								key={project.id}
-								className='bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 group hover:bg-white/10 transition-all flex-shrink-0 w-80'>
+								className='bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 group hover:bg-white/10 transition-all flex-shrink-0 w-96'>
 								<div className='h-48 relative overflow-hidden bg-gray-900/50'>
 									{project.image ? (
 										<>
