@@ -3,6 +3,8 @@ import quoteart from "/quoteart.jpg";
 import toolhub from "/toolhub.jpg";
 import wordfinder from "/findwordfinder.jpg";
 import library from "/library.jpg";
+import lesshopy from "/lesshopy.jpg";
+import merapg from "/merapg.jpg";
 
 const projects = [
 	{
@@ -10,14 +12,23 @@ const projects = [
 		title: "QuoteArt.xyz",
 		description:
 			"A Web application that generates inspirational quotes and automatically posts them to connected social media platforms on scheduled intervals. Built with Next.js and integrated with Facebook Graph API, it eliminates the need for manual content creation and scheduling. Includes custom scheduling options, and social platform auth. Ideal for content creators, influencers",
-		tech: ["NextJS", "Tailwind", "NodeJS", "MongoDB", "Git", "Github"],
+		tech: [
+			"NextJS",
+			"Tailwind",
+			"NodeJS",
+			"Cloudinary",
+			"Meta Graph API",
+			"MongoDB",
+			"Git",
+			"Github",
+		],
 		status: "Completed",
 		category: "web app",
 		features: [
 			"Auto Quote Image Generator",
 			"Auto Social Media Poster",
 			"Multiple Quote Template",
-			"Multiple Language",
+			"Admin Panel for Management",
 			"Easy Integration",
 			"Custom Scheduling",
 			"Social Platform Auth",
@@ -37,6 +48,7 @@ const projects = [
 			"Tailwind",
 			"NodeJS",
 			"ExpressJS",
+			"Cloudinary",
 			"MongoDB",
 			"Git",
 			"Github",
@@ -59,6 +71,69 @@ const projects = [
 	},
 	{
 		id: 3,
+		title: "Lesshopy - E-commerce Platform",
+		description:
+			"A fully functional e-commerce platform that allows users to browse, search, and purchase products seamlessly. Integrated with Razorpay for secure online payments, it provides a smooth shopping experience. The platform includes a custom-built Admin Panel for managing products, categories, orders, and users efficiently. Built with the MERN stack, it ensures scalability, speed, and security.",
+		tech: [
+			"ReactJS",
+			"NodeJS",
+			"Express",
+			"Razorpay",
+			"Cloudinary",
+			"MongoDB",
+			"Tailwind",
+			"Git",
+			"Github",
+		],
+		status: "Completed",
+		category: "web app",
+		features: [
+			"User Authentication & Authorization",
+			"Product Browsing & Search",
+			"Add to Cart & Checkout",
+			"Razorpay Secure Payment Integration",
+			"Custom Admin Panel",
+			"Product & Category Management",
+			"Order Management System",
+			"Responsive UI/UX Design",
+		],
+		github: "https://github.com/dheerurajpoot/DR-Store-eCommerce",
+		live: "https://drstore.vercel.app/",
+		image: lesshopy,
+	},
+	{
+		id: 4,
+		title: "MeraPG: PG Rental Platform",
+		description:
+			"A complete PG rental platform where property owners can list their properties, and users can search, view, and book PGs or rental rooms. Built with the MERN stack, the platform provides a seamless experience for property management and bookings. Includes secure authentication, real-time chat support, booking management, and an intuitive admin panel.",
+		tech: [
+			"MongoDB",
+			"ExpressJS",
+			"ReactJS",
+			"NodeJS",
+			"Cloudinary",
+			"Tailwind",
+			"Git",
+			"Github",
+		],
+		status: "Completed",
+		category: "Web App",
+		features: [
+			"PG / Room Listing & Management",
+			"Advanced Property Search & Filters",
+			"Dynamic Routes for Property Pages",
+			"Image Upload & Compression",
+			"User Authentication & Authorization",
+			"Live Chat Support",
+			"Booking & Availability Toggle",
+			"Responsive & Modern UI",
+		],
+		github: "https://github.com/dheerurajpoot/merapg",
+		live: "https://merapg.vercel.app/",
+		image: merapg,
+	},
+	{
+		id: 5,
 		title: "FindwordFinder.com",
 		description:
 			"FindWordFinder.com is a word discovery and word game support platform designed to help users enhance their vocabulary, solve puzzles, and win word games like Scrabble, Wordle, and crosswords. The tool allows users to input letters, prefixes, or suffixes and instantly generate meaningful words from a vast dictionary database. It's an essential resource for word game enthusiasts, students, and language learners.",
@@ -87,7 +162,7 @@ const projects = [
 		image: wordfinder,
 	},
 	{
-		id: 4,
+		id: 6,
 		title: "SMMGarden.com",
 		description:
 			"SMMGarden.com is a comprehensive web application offering 50+ powerful online tools including calculators, converters, generators, and productivity utilities—all under one roof. Built with performance and user experience in mind, the platform serves as a go-to resource for both everyday users and professionals looking for quick solutions without installing any software.",
