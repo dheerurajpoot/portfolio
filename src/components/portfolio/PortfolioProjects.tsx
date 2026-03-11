@@ -1,12 +1,70 @@
 import { Code, Server, Github, ExternalLink } from "lucide-react";
 import quoteart from "/quoteart.jpg";
-import toolhub from "/toolhub.jpg";
-import wordfinder from "/findwordfinder.jpg";
 import library from "/library.jpg";
 import lesshopy from "/lesshopy.jpg";
-import merapg from "/merapg.jpg";
+import maverix from "/maverix.png";
+import deelzo from "/deelzo.png";
 
 const projects = [
+	{
+		id: 1,
+		title: "Maverix HRM",
+		description:
+			"A Human Resource Management System (HRM) built with Next.js and Node.js for efficient HR management. It includes features such as employee management, leave tracking, and performance evaluation. It has features such as attendance management, salary management, leave management, and other features.",
+		tech: [
+			"NextJS",
+			"Supabase",
+			"Imagekit",
+			"Node-cron",
+			"Git",
+			"Github",
+		],
+		status: "Completed",
+		category: "web app",
+		features: [
+			"Employee Management",
+			"Leave Tracking",
+			"Performance Evaluation",
+			"Admin, HR, and Employee Panel",
+			"Attendance Management",
+			"Salary Management",
+			"Leave Management",
+			"Other",
+		],
+		github: "https://github.com/dheerurajpoot/MaveriX-Hrm",
+		live: "https://www.maverix.online/",
+		image: maverix,
+	},
+	{
+		id: 2,
+		title: "Deelzo",
+		description:
+			"Deelzo is a trusted marketplace for buying and selling digital assets and a shop for digital products. We empower entrepreneurs and digital investors to discover, evaluate, and acquire high-quality digital properties with confidence. It includes features such as digital asset marketplace, admin and employee panel, payu payment integration, and email notification integration.",
+		tech: [
+			"NextJS",
+			"Tailwind",
+			"NodeJS",
+			"Imagekit",
+			"MongoDB",
+			"Git",
+			"Github",
+		],
+		status: "Working...",
+		category: "web app",
+		features: [
+			"Digital Asset Marketplace",
+			"Admin and Employee Panel",
+			"PayU Payment Integration",
+			"User Authentication & Authorization",
+			"Product and Listing Management",
+			"Order Management",
+			"User Management",
+			"Email Notification Integration",
+		],
+		github: "https://github.com/dheerurajpoot/deelzo",
+		live: "https://www.deelzo.com",
+		image: deelzo,
+	},
 	{
 		id: 1,
 		title: "QuoteArt.xyz",
@@ -39,7 +97,7 @@ const projects = [
 		image: quoteart,
 	},
 	{
-		id: 2,
+		id: 3,
 		title: "Community Library",
 		description:
 			"A full-stack web platform where users can list their books for others to borrow, fostering a community-driven sharing system. Includes an intuitive admin panel for managing users, books, and borrow requests. Integrated with email notifications to keep users informed about borrow/return updates. Designed for book lovers who want to share and discover books locally without commercial rentals.",
@@ -66,11 +124,11 @@ const projects = [
 			"Borrow History Tracking",
 		],
 		github: "https://github.com/dheerurajpoot/community-library",
-		live: "https://community-library-two.vercel.app",
+		live: "#",
 		image: library,
 	},
 	{
-		id: 3,
+		id: 4,
 		title: "Lesshopy - E-commerce Platform",
 		description:
 			"A fully functional e-commerce platform that allows users to browse, search, and purchase products seamlessly. Integrated with Razorpay for secure online payments, it provides a smooth shopping experience. The platform includes a custom-built Admin Panel for managing products, categories, orders, and users efficiently. Built with the MERN stack, it ensures scalability, speed, and security.",
@@ -100,88 +158,6 @@ const projects = [
 		github: "https://github.com/dheerurajpoot/DR-Store-eCommerce",
 		live: "https://drstore.vercel.app/",
 		image: lesshopy,
-	},
-	{
-		id: 4,
-		title: "MeraPG: PG Rental Platform",
-		description:
-			"A complete PG rental platform where property owners can list their properties, and users can search, view, and book PGs or rental rooms. Built with the MERN stack, the platform provides a seamless experience for property management and bookings. Includes secure authentication, real-time chat support, booking management, and an intuitive admin panel.",
-		tech: [
-			"MongoDB",
-			"ExpressJS",
-			"ReactJS",
-			"NodeJS",
-			"Cloudinary",
-			"Tailwind",
-			"Git",
-			"Github",
-		],
-		status: "Completed",
-		category: "Web App",
-		features: [
-			"PG / Room Listing & Management",
-			"Advanced Property Search & Filters",
-			"Dynamic Routes for Property Pages",
-			"Image Upload & Compression",
-			"User Authentication & Authorization",
-			"Live Chat Support",
-			"Booking & Availability Toggle",
-			"Responsive & Modern UI",
-		],
-		github: "https://github.com/dheerurajpoot/merapg",
-		live: "https://merapg.vercel.app/",
-		image: merapg,
-	},
-	{
-		id: 5,
-		title: "FindwordFinder.com",
-		description:
-			"FindWordFinder.com is a word discovery and word game support platform designed to help users enhance their vocabulary, solve puzzles, and win word games like Scrabble, Wordle, and crosswords. The tool allows users to input letters, prefixes, or suffixes and instantly generate meaningful words from a vast dictionary database. It's an essential resource for word game enthusiasts, students, and language learners.",
-		tech: [
-			"NextJS",
-			"Tailwind",
-			"NodeJS",
-			"MongoDB",
-			"Datamuse API",
-			"Git",
-			"Github",
-		],
-		status: "Completed",
-		category: "web app",
-		features: [
-			"Smart Word Finder",
-			"Fun Word Games",
-			"Crossword Solver",
-			"Real-time Suggestions",
-			"Filter & Sort Options",
-			"SEO-Optimized",
-			"Responsive Design",
-		],
-		github: "https://github.com/dheerurajpoot/word-finder",
-		live: "https://www.findwordfinder.com",
-		image: wordfinder,
-	},
-	{
-		id: 6,
-		title: "SMMGarden.com",
-		description:
-			"SMMGarden.com is a comprehensive web application offering 50+ powerful online tools including calculators, converters, generators, and productivity utilities—all under one roof. Built with performance and user experience in mind, the platform serves as a go-to resource for both everyday users and professionals looking for quick solutions without installing any software.",
-		tech: ["NextJS", "Tailwind", "NodeJS", "MongoDB", "Git", "Github"],
-		status: "Completed",
-		category: "web app",
-		features: [
-			"50+ useful tools",
-			"SEO-optimized for better visibility",
-			"Responsive Design",
-			"Secure HTTPS-enabled platform",
-			"User-friendly interface",
-			"Built for productivity",
-			"No login or installation required",
-			"Multiple tools in one place",
-		],
-		github: "https://github.com/dheerurajpoot/thetoolshub",
-		live: "https://www.smmgarden.com",
-		image: toolhub,
 	},
 ];
 
