@@ -4,23 +4,20 @@ import {
 	MapPin,
 	Mail,
 	Phone,
-	Clock,
 	Linkedin,
 	Twitter,
 	Instagram,
 	Github,
 } from "lucide-react";
-import {
-	Button,
-	Card,
-	CardBody,
-	CardFooter,
-	CardHeader,
-} from "@traken-ui/react";
+import { Button } from "@traken-ui/react";
 import axios from "axios";
 
 function PortfolioContact() {
 	const [isVisible, setIsVisible] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitStatus, setSubmitStatus] = useState<
+		"idle" | "success" | "error"
+	>("idle");
 	const [formState, setFormState] = useState({
 		name: "",
 		email: "",
@@ -33,7 +30,7 @@ function PortfolioContact() {
 	}, []);
 
 	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	) => {
 		const { name, value } = e.target;
 		setFormState((prev) => ({ ...prev, [name]: value }));
@@ -44,189 +41,222 @@ function PortfolioContact() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		const { name, email, subject, message } = formState;
+		setIsSubmitting(true);
+		setSubmitStatus("idle");
 
 		const data = {
 			fields: [
-				{ name: "full_name", value: name },
-				{ name: "email", value: email },
-				{ name: "subject", value: subject },
-				{ name: "message", value: message },
+				{ name: "full_name", value: formState.name },
+				{ name: "email", value: formState.email },
+				{ name: "subject", value: formState.subject },
+				{ name: "message", value: formState.message },
 			],
 		};
 
-		const response = await axios.post(
-			`https://api.hsforms.com/submissions/v3/integration/submit/${formId}/${apiKey}`,
-			data,
-			{
-				headers: {
-					"Content-Type": "application/json",
+		try {
+			const response = await axios.post(
+				`https://api.hsforms.com/submissions/v3/integration/submit/${formId}/${apiKey}`,
+				data,
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
 				},
+			);
+			if (response.status === 200) {
+				setSubmitStatus("success");
+				setFormState({
+					name: "",
+					email: "",
+					subject: "",
+					message: "",
+				});
+				setTimeout(() => setSubmitStatus("idle"), 5000);
 			}
-		);
-		if (response.status === 200) {
-			setFormState({
-				name: "",
-				email: "",
-				subject: "",
-				message: "",
-			});
+		} catch (error) {
+			setSubmitStatus("error");
+			setTimeout(() => setSubmitStatus("idle"), 5000);
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
 	const contactInfo = [
 		{
-			icon: <Mail className='w-5 h-5' />,
+			icon: <Mail className='w-6 h-6' />,
 			title: "Email",
 			value: "rajpootdheeru90@gmail.com",
 			link: "mailto:rajpootdheeru90@gmail.com",
+			desc: "Drop me a line anytime",
 		},
 		{
-			icon: <Phone className='w-5 h-5' />,
+			icon: <Phone className='w-6 h-6' />,
 			title: "Phone",
-			value: "+919026315148",
+			value: "+91 9026315148",
 			link: "tel:+919026315148",
+			desc: "Available Mon-Fri, 9AM-6PM",
 		},
 		{
-			icon: <MapPin className='w-5 h-5' />,
+			icon: <MapPin className='w-6 h-6' />,
 			title: "Location",
 			value: "Kanpur, Uttar Pradesh, India",
-			link: null,
-		},
-		{
-			icon: <Clock className='w-5 h-5' />,
-			title: "Working Hours",
-			value: "Mon-Fri: 9AM - 6PM",
-			link: null,
+			link: "https://maps.google.com/?q=Kanpur,India",
+			desc: "Open for remote & local work",
 		},
 	];
 
 	return (
 		<section
 			id='contact'
-			className='bg-black text-white py-16 md:py-4 lg:py-8 overflow-hidden'>
-			<div className='max-w-[768px] w-full xl:max-w-[1080px]  mx-auto px-4 sm:px-6 lg:px-8'>
+			className='relative bg-black text-white md:py-20 py-12 overflow-hidden'>
+			{/* Background Decorative Elements */}
+			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
+				<div className='absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-indigo-600/5 blur-[150px] rounded-full animate-pulse'></div>
+				<div className='absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple-600/5 blur-[150px] rounded-full animate-pulse delay-700'></div>
+			</div>
+
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative'>
 				{/* Section Header */}
-				<div className='text-center mb-16'>
-					<div className='flex items-center justify-center space-x-3 mb-6'>
-						<div className='h-1 w-10 bg-indigo-500' />
-						<span className='text-indigo-400 uppercase text-sm tracking-widest font-medium'>
-							Contact Me
+				<div className='flex flex-col items-center text-center mb-20'>
+					<div className='flex items-center space-x-3 mb-6'>
+						<div className='h-[2px] w-12 bg-gradient-to-r from-indigo-500 to-transparent' />
+						<span className='text-indigo-400 uppercase text-xs md:text-sm tracking-[0.3em] font-black'>
+							Connect
 						</span>
-						<div className='h-1 w-10 bg-indigo-500' />
+						<div className='h-[2px] w-12 bg-gradient-to-l from-indigo-500 to-transparent' />
 					</div>
-					<h2 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-6'>
-						Get In Touch
+					<h2 className='text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter'>
+						Get In{" "}
+						<span className='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-gradient-x'>
+							Touch
+						</span>
 					</h2>
-					<p className='text-gray-300 max-w-2xl mx-auto text-base md:text-lg'>
-						Have a project in mind or just want to say hello? Feel
-						free to reach out. I'm always open to discussing new
-						projects, creative ideas or opportunities to be part of
-						your vision.
+					<p className='text-gray-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-medium'>
+						Whether you have a groundbreaking idea or just want to
+						chat about tech, my inbox is always open.
 					</p>
 				</div>
 
-				{/* Contact Content */}
-				<div className='flex flex-col justify-center items-center md:flex-row  gap-8 lg:gap-12 '>
-					{/* Contact Info */}
+				<div className='grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch'>
+					{/* Contact Info Side */}
 					<div
-						className={`lg:col-span-2 transition-all duration-1000 transform ${
+						className={`lg:col-span-5 space-y-6 transition-all duration-1000 transform ${
 							isVisible
 								? "translate-x-0 opacity-100"
 								: "-translate-x-12 opacity-0"
 						}`}>
-						<Card className='bg-gray-900/50 backdrop-blur-sm border text-gray-200 border-gray-800 rounded-2xl p-6 md:p-8 h-full'>
-							<CardHeader className='p-0 bg-transparent text-gray-200'>
-								<h3 className='text-2xl font-bold mb-6'>
-									Contact Information
-								</h3>
-								<p className='text-gray-300 mb-8'>
-									Let's turn your ideas into reality. I'm here
-									to help with any questions about
-									collaboration or projects.
-								</p>
-							</CardHeader>
+						<div className='bg-gray-900/40 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-white/5 shadow-2xl h-full flex flex-col'>
+							<h3 className='text-2xl font-bold mb-8 text-white'>
+								Contact Information
+							</h3>
 
-							<CardBody className='space-y-6 bg-transparent p-0'>
+							<div className='space-y-8 flex-grow'>
 								{contactInfo.map((item, index) => (
 									<div
 										key={index}
-										className='flex items-start gap-4'>
-										<div className='bg-indigo-500/20 text-indigo-400 p-2 rounded-lg mt-1'>
+										className='group flex items-start gap-5 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300'>
+										<div className='bg-indigo-500/10 text-indigo-400 p-4 rounded-2xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500 shadow-lg shadow-indigo-500/5'>
 											{item.icon}
 										</div>
 										<div>
-											<h4 className='text-sm text-gray-400 mb-1'>
+											<h4 className='text-sm font-black uppercase tracking-widest text-gray-500 mb-1'>
 												{item.title}
 											</h4>
 											{item.link ? (
 												<a
 													href={item.link}
-													className='text-white hover:text-indigo-400 transition-colors'>
+													target={
+														item.title ===
+														"Location"
+															? "_blank"
+															: "_self"
+													}
+													rel={
+														item.title ===
+														"Location"
+															? "noopener noreferrer"
+															: ""
+													}
+													className='text-lg font-bold text-gray-200 hover:text-indigo-400 transition-colors block'>
 													{item.value}
 												</a>
 											) : (
-												<p className='text-white'>
+												<p className='text-lg font-bold text-gray-200'>
 													{item.value}
 												</p>
 											)}
+											<p className='text-xs text-gray-500 font-medium mt-1'>
+												{item.desc}
+											</p>
 										</div>
 									</div>
 								))}
-							</CardBody>
+							</div>
 
-							<CardFooter className='mt-10 bg-transparent p-0 text-gra-200'>
-								<h4 className='text-lg font-semibold mb-4'>
-									Connect With Me
+							<div className='mt-12 pt-8 border-t border-white/5'>
+								<h4 className='text-sm font-black uppercase tracking-widest text-gray-500 mb-6'>
+									Social Ecosystem
 								</h4>
-								<div className='flex gap-4'>
-									<a
-										href='https://www.linkedin.com/in/dheerurajpoot/'
-										aria-label={`Connect on Linkedin`}
-										className='w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors'>
-										<Linkedin />
-									</a>
-									<a
-										href='https://twitter.com/DheeruRajpoot3'
-										aria-label={`Connect on Twitter`}
-										className='w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors'>
-										<Twitter />
-									</a>
-									<a
-										href='https://www.instagram.com/dheeru_rajpoot_/'
-										aria-label={`Connect on Instagram`}
-										className='w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors'>
-										<Instagram />
-									</a>
-									<a
-										href='https://github.com/dheerurajpoot'
-										aria-label={`Connect on Github`}
-										className='w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors'>
-										<Github />
-									</a>
+								<div className='flex flex-wrap gap-4'>
+									{[
+										{
+											icon: <Linkedin size={20} />,
+											href: "https://www.linkedin.com/in/dheerurajpoot/",
+											label: "LinkedIn",
+											color: "hover:bg-[#0077b5]",
+										},
+										{
+											icon: <Twitter size={20} />,
+											href: "https://twitter.com/DheeruRajpoot3",
+											label: "Twitter",
+											color: "hover:bg-[#1da1f2]",
+										},
+										{
+											icon: <Instagram size={20} />,
+											href: "https://www.instagram.com/dheeru_rajpoot_/",
+											label: "Instagram",
+											color: "hover:bg-[#e4405f]",
+										},
+										{
+											icon: <Github size={20} />,
+											href: "https://github.com/dheerurajpoot",
+											label: "GitHub",
+											color: "hover:bg-[#333]",
+										},
+									].map((social, index) => (
+										<a
+											key={index}
+											href={social.href}
+											target='_blank'
+											rel='noopener noreferrer'
+											aria-label={social.label}
+											className={`w-12 h-12 bg-gray-800/50 rounded-2xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-500 hover:scale-110 shadow-lg ${social.color}`}>
+											{social.icon}
+										</a>
+									))}
 								</div>
-							</CardFooter>
-						</Card>
+							</div>
+						</div>
 					</div>
 
-					{/* Contact Form */}
-					<Card
-						className={`lg:col-span-3 transition-all backdrop-blur-sm   rounded-2xl duration-1000 border-gray-800 border delay-300 transform bg-transparent text-gray-200 ${
+					{/* Form Side */}
+					<div
+						className={`lg:col-span-7 transition-all duration-1000 delay-300 transform ${
 							isVisible
 								? "translate-x-0 opacity-100"
 								: "translate-x-12 opacity-0"
 						}`}>
-						<CardBody className=' bg-transparent  p-6 md:p-8'>
-							<h3 className='text-2xl font-bold mb-6 text-gray-200'>
+						<div className='bg-gray-900/40 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-12 border border-white/5 shadow-2xl h-full'>
+							<h3 className='text-2xl font-bold mb-8 text-white'>
 								Send Me a Message
 							</h3>
 
 							<form onSubmit={handleSubmit} className='space-y-6'>
 								<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-									<div>
+									<div className='space-y-2'>
 										<label
 											htmlFor='name'
-											className='block text-sm font-medium text-gray-300 mb-2'>
+											className='text-xs font-black uppercase tracking-widest text-gray-500 ml-1'>
 											Your Name
 										</label>
 										<input
@@ -236,15 +266,15 @@ function PortfolioContact() {
 											value={formState.name}
 											onChange={handleChange}
 											required
-											className='w-full bg-gray-800/50 border border-gray-700 focus:border-indigo-500 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all'
-											placeholder='John Doe'
+											className='w-full bg-white/5 border border-white/5 focus:border-indigo-500/50 rounded-2xl py-4 px-6 text-white placeholder-gray-600 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300'
+											placeholder='Enter your name'
 										/>
 									</div>
 
-									<div>
+									<div className='space-y-2'>
 										<label
 											htmlFor='email'
-											className='block text-sm font-medium text-gray-300 mb-2'>
+											className='text-xs font-black uppercase tracking-widest text-gray-500 ml-1'>
 											Your Email
 										</label>
 										<input
@@ -254,16 +284,16 @@ function PortfolioContact() {
 											value={formState.email}
 											onChange={handleChange}
 											required
-											className='w-full bg-gray-800/50 border border-gray-700 focus:border-indigo-500 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all'
-											placeholder='john@example.com'
+											className='w-full bg-white/5 border border-white/5 focus:border-indigo-500/50 rounded-2xl py-4 px-6 text-white placeholder-gray-600 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300'
+											placeholder='Enter your email'
 										/>
 									</div>
 								</div>
 
-								<div>
+								<div className='space-y-2'>
 									<label
 										htmlFor='subject'
-										className='block text-sm font-medium text-gray-300 mb-2'>
+										className='text-xs font-black uppercase tracking-widest text-gray-500 ml-1'>
 										Subject
 									</label>
 									<input
@@ -273,15 +303,15 @@ function PortfolioContact() {
 										value={formState.subject}
 										onChange={handleChange}
 										required
-										className='w-full bg-gray-800/50 border border-gray-700 focus:border-indigo-500 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all'
-										placeholder='Project Discussion'
+										className='w-full bg-white/5 border border-white/5 focus:border-indigo-500/50 rounded-2xl py-4 px-6 text-white placeholder-gray-600 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300'
+										placeholder='What is this regarding?'
 									/>
 								</div>
 
-								<div>
+								<div className='space-y-2'>
 									<label
 										htmlFor='message'
-										className='block text-sm font-medium text-gray-300 mb-2'>
+										className='text-xs font-black uppercase tracking-widest text-gray-500 ml-1'>
 										Your Message
 									</label>
 									<textarea
@@ -291,22 +321,48 @@ function PortfolioContact() {
 										onChange={handleChange}
 										required
 										rows={5}
-										className='w-full bg-gray-800/50 border border-gray-700 focus:border-indigo-500 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all resize-none'
-										placeholder="Hello, I'd like to talk about..."></textarea>
+										className='w-full bg-white/5 border border-white/5 focus:border-indigo-500/50 rounded-2xl py-4 px-6 text-white placeholder-gray-600 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 resize-none'
+										placeholder='Write your message here...'></textarea>
 								</div>
 
-								<Button
-									type='submit'
-									className='group flex items-center justify-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 cursor-pointer'>
-									Send Message
-									<Send
-										size={18}
-										className='ml-2 transform group-hover:translate-x-1 transition-transform'
-									/>
-								</Button>
+								<div className='flex flex-col sm:flex-row items-center gap-6 pt-4'>
+									<Button
+										type='submit'
+										disabled={isSubmitting}
+										className={`group relative flex items-center justify-center w-full sm:w-auto px-10 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all duration-500 overflow-hidden ${
+											isSubmitting
+												? "bg-gray-800 cursor-not-allowed text-gray-500"
+												: "bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-[0_0_25px_rgba(79,70,229,0.4)] hover:translate-y-[-2px] active:translate-y-0"
+										}`}>
+										<span className='relative z-10 flex items-center gap-3'>
+											{isSubmitting
+												? "Transmitting..."
+												: "Send Message"}
+											{!isSubmitting && (
+												<Send
+													size={18}
+													className='group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform'
+												/>
+											)}
+										</span>
+									</Button>
+
+									{submitStatus === "success" && (
+										<p className='text-green-400 font-bold text-sm flex items-center gap-2 animate-bounce'>
+											<span className='w-2 h-2 bg-green-400 rounded-full'></span>
+											Message Transmitted Successfully!
+										</p>
+									)}
+									{submitStatus === "error" && (
+										<p className='text-red-400 font-bold text-sm flex items-center gap-2'>
+											<span className='w-2 h-2 bg-red-400 rounded-full'></span>
+											Transmission Failed. Try again.
+										</p>
+									)}
+								</div>
 							</form>
-						</CardBody>
-					</Card>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

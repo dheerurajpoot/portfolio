@@ -1,4 +1,4 @@
-import { Code, Server, Github, ExternalLink } from "lucide-react";
+import { Code, Github, ExternalLink } from "lucide-react";
 import quoteart from "/quoteart.jpg";
 import library from "/library.jpg";
 import lesshopy from "/lesshopy.jpg";
@@ -11,14 +11,7 @@ const projects = [
 		title: "Maverix HRM",
 		description:
 			"A Human Resource Management System (HRM) built with Next.js and Node.js for efficient HR management. It includes features such as employee management, leave tracking, and performance evaluation. It has features such as attendance management, salary management, leave management, and other features.",
-		tech: [
-			"NextJS",
-			"Supabase",
-			"Imagekit",
-			"Node-cron",
-			"Git",
-			"Github",
-		],
+		tech: ["NextJS", "Supabase", "Imagekit", "Node-cron", "Git", "Github"],
 		status: "Completed",
 		category: "web app",
 		features: [
@@ -165,120 +158,137 @@ function ProjectsSection() {
 	return (
 		<section
 			id='projects'
-			className='w-full bg-black text-white py-12 md:py-20 lg:py-24 overflow-hidden relative'>
-			<div className='max-w-6xl mx-auto'>
-				<h2 className='text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-to-r from-indigo-400 to-blue-400 bg-clip-text text-indigo-400'>
-					Featured Projects
-				</h2>
-				<p className='text-gray-300 text-center mb-12 max-w-2xl mx-auto'>
-					Here are some of the projects I've worked on, showcasing my
-					skills.
-				</p>
-				{/* Projects Display */}
-				<div className='overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent hover:scrollbar-thumb-purple-500/70 pb-4'>
-					<div className='flex gap-6 w-max'>
-						{projects.map((project) => (
-							<div
-								key={project.id}
-								className='bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 group hover:bg-white/10 transition-all flex-shrink-0 w-96'>
-								<div className='h-48 relative overflow-hidden bg-gray-900/50'>
-									{project.image ? (
-										<>
-											<img
-												src={project.image}
-												alt={`${project.title} screenshot`}
-												className='w-full h-full object-contain transition-transform duration-300 group-hover:scale-105'
-												onError={(e) => {
-													// Fallback to gradient background if image fails to load
-													const img =
-														e.target as HTMLImageElement;
-													img.style.display = "none";
-													(
-														img.nextElementSibling as HTMLElement
-													).style.display = "flex";
-												}}
-											/>
-											{/* Fallback gradient background */}
-											<div className='absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 items-center justify-center hidden'>
-												<div className='text-6xl text-white/20'>
-													{project.category ===
-													"web" ? (
-														<Code />
-													) : (
-														<Server />
-													)}
-												</div>
-											</div>
-											{/* Overlay for better text readability on hover */}
-											<div className='absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-										</>
-									) : (
-										/* Default gradient background when no image is provided */
-										<div className='w-full h-full bg-gradient-to-br from-indigo-500/20 to-blue-500/20 flex items-center justify-center'>
-											<div className='text-6xl text-white/20'>
-												{project.category === "web" ? (
-													<Code />
-												) : (
-													<Server />
-												)}
-											</div>
-										</div>
+			className='w-full bg-black text-white py-12 md:py-20 overflow-hidden relative'>
+			{/* Background Decoration */}
+			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none overflow-hidden'>
+				<div className='absolute top-[20%] right-[-10%] w-[30%] h-[30%] bg-indigo-600/5 blur-[120px] rounded-full'></div>
+				<div className='absolute bottom-[20%] left-[-10%] w-[30%] h-[30%] bg-purple-600/5 blur-[120px] rounded-full'></div>
+			</div>
+
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 z-10 relative'>
+				<div className='flex flex-col items-center mb-16'>
+					<div className='flex items-center space-x-3 mb-4'>
+						<div className='h-1 w-8 bg-indigo-500 rounded-full' />
+						<span className='text-indigo-400 uppercase text-xs md:text-sm tracking-[0.2em] font-bold'>
+							My Work
+						</span>
+					</div>
+					<h2 className='text-4xl md:text-5xl lg:text-6xl font-extrabold text-center mb-6'>
+						Featured{" "}
+						<span className='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400'>
+							Projects
+						</span>
+					</h2>
+					<p className='text-gray-400 text-center max-w-2xl text-base md:text-lg leading-relaxed'>
+						A selection of my recent work, ranging from complex
+						enterprise systems to creative web applications. Each
+						project is built with a focus on performance,
+						scalability, and user experience.
+					</p>
+				</div>
+
+				{/* Projects Grid */}
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+					{projects.map((project) => (
+						<div
+							key={project.id}
+							className='group flex flex-col bg-gray-900/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/5 hover:border-indigo-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2'>
+							{/* Image Container */}
+							<div className='h-64 relative overflow-hidden bg-gray-800/50'>
+								{project.image ? (
+									<img
+										src={project.image}
+										alt={project.title}
+										className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
+									/>
+								) : (
+									<div className='w-full h-full bg-gradient-to-br from-indigo-900/40 to-purple-900/40 flex items-center justify-center'>
+										<Code className='w-12 h-12 text-white/10' />
+									</div>
+								)}
+								{/* Overlay on hover */}
+								<div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4'>
+									<a
+										href={project.github}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-indigo-600 transition-colors duration-300'
+										title='View Code'>
+										<Github size={22} />
+									</a>
+									{project.live !== "#" && (
+										<a
+											href={project.live}
+											target='_blank'
+											rel='noopener noreferrer'
+											className='p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-indigo-600 transition-colors duration-300'
+											title='Live Demo'>
+											<ExternalLink size={22} />
+										</a>
 									)}
 								</div>
-								<div className='p-6'>
-									<div className='flex items-center justify-between mb-3'>
-										<span
-											className={`px-3 py-1 rounded-full text-xs font-medium ${
-												project.status === "Completed"
-													? "bg-green-500/20 text-green-300"
-													: "bg-yellow-500/20 text-yellow-300"
-											}`}>
-											{project.status}
-										</span>
-										<div className='flex space-x-2'>
-											<a
-												href={project.github}
-												className='text-gray-400 hover:text-white transition-colors'>
-												<Github size={20} />
-											</a>
-											<a
-												href={project.live}
-												className='text-gray-400 hover:text-white transition-colors'>
-												<ExternalLink size={20} />
-											</a>
-										</div>
-									</div>
-									<h3 className='text-xl font-bold text-white mb-3'>
-										{project.title}
-									</h3>
-									<p className='text-gray-300 mb-4 text-sm leading-relaxed'>
-										{project.description}
+								{/* Badges */}
+								<div className='absolute top-4 left-4 flex flex-col gap-2'>
+									<span className='px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-600/80 text-white backdrop-blur-md border border-indigo-500/20'>
+										{project.category}
+									</span>
+									<span
+										className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md border ${
+											project.status === "Completed"
+												? "bg-green-500/10 text-green-400 border-green-500/20"
+												: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+										}`}>
+										{project.status}
+									</span>
+								</div>
+							</div>
+
+							{/* Content Container */}
+							<div className='p-8 flex flex-col flex-grow'>
+								<h3 className='text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors'>
+									{project.title}
+								</h3>
+
+								<p className='text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3'>
+									{project.description}
+								</p>
+
+								{/* Features List */}
+								<div className='mb-8'>
+									<p className='text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3'>
+										Key Highlights
 									</p>
-									<div className='flex flex-wrap gap-2 mb-4'>
+									<div className='space-y-2.5'>
+										{project.features
+											.slice(0, 4)
+											.map((feature, i) => (
+												<div
+													key={i}
+													className='flex items-start text-xs text-gray-400 group/item'>
+													<div className='mt-1.5 w-1.5 h-1.5 bg-indigo-500 rounded-full mr-3 shrink-0 group-hover/item:scale-125 transition-transform' />
+													<span className='group-hover/item:text-gray-300 transition-colors'>
+														{feature}
+													</span>
+												</div>
+											))}
+									</div>
+								</div>
+
+								{/* Tech Stack Footer */}
+								<div className='mt-auto pt-6 border-t border-white/5'>
+									<div className='flex flex-wrap gap-2'>
 										{project.tech.map((tech, i) => (
 											<span
 												key={i}
-												className='bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-lg text-xs'>
+												className='text-[10px] font-semibold text-indigo-300 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/10 hover:bg-indigo-500/20 transition-colors'>
 												{tech}
 											</span>
 										))}
 									</div>
-									<div className='space-y-1'>
-										{project.features.map((feature, i) => (
-											<div
-												key={i}
-												className='flex items-center text-sm text-gray-400'>
-												<span className='text-green-400 mr-2'>
-													✓
-												</span>
-												{feature}
-											</div>
-										))}
-									</div>
 								</div>
 							</div>
-						))}
-					</div>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>

@@ -1,96 +1,60 @@
 import { useState } from "react";
-import { Github, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
 
 function PortfolioFooter() {
 	const [currentYear] = useState(new Date().getFullYear());
 
 	const navLinks = [
-		{ name: "Home", href: "#" },
-		{ name: "About", href: "#" },
-		{ name: "Skills", href: "#" },
-		{ name: "Projects", href: "#" },
-		{ name: "Contact", href: "#" },
-	];
-
-	const socialLinks = [
-		{
-			name: "Facebook",
-			icon: <Facebook size={20} />,
-			href: "https://facebook.com",
-			color: "#1877F2",
-		},
-		{
-			name: "LinkedIn",
-			icon: <Linkedin size={20} />,
-			href: "https://www.linkedin.com/in/dheerurajpoot/",
-			color: "#0A66C2",
-		},
-		{
-			name: "Twitter",
-			icon: <Twitter size={20} />,
-			href: "https://twitter.com/DheeruRajpoot3",
-			color: "#1DA1F2",
-		},
-		{
-			name: "Instagram",
-			icon: <Instagram size={20} />,
-			href: "https://www.instagram.com/dheeru_rajpoot_/",
-			color: "#E4405F",
-		},
-		{
-			name: "GitHub",
-			icon: <Github size={20} />,
-			href: "https://github.com/dheerurajpoot",
-			color: "#e3e3e3",
-		},
+		{ name: "Home", href: "#home" },
+		{ name: "Skills", href: "#skills" },
+		{ name: "Projects", href: "#projects" },
+		{ name: "About", href: "#about" },
+		{ name: "Contact", href: "#contact" },
 	];
 
 	return (
-		<footer
-			className={`relative w-full bg-black text-white py-12 overflow-hidden transition-opacity duration-1000 `}>
-			{/* Background gradient element */}
-			<div className='absolute bottom-0 left-1/4 w-64 h-64 bg-indigo-600 opacity-10 rounded-full blur-3xl pointer-events-none'></div>
+		<footer className='relative w-full bg-black py-10 border-t border-white/5'>
+			{/* Subtle Background Glow */}
+			<div className='absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-24 bg-indigo-600/5 blur-[100px] pointer-events-none'></div>
 
-			<div className='flex flex-col space-y-10 justify-center  max-w-[768px] w-full xl:max-w-[1080px] mx-auto px-4 sm:px-6'>
-				{/* Navigation Links - Responsive grid for smaller screens */}
-				<nav className='grid grid-cols-2 place-items-center sm:grid-cols-3 md:flex md:justify-center md:flex-wrap gap-4 md:gap-6 text-gray-400 font-medium'>
-					{navLinks.map((link, index) => (
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+				<div className='flex flex-col md:flex-row items-center justify-between gap-8'>
+					{/* Brand/Logo Section */}
+					<div className='flex flex-col items-center md:items-start'>
 						<a
-							key={index}
-							href={link.href}
-							className='hover:text-indigo-400 transition-colors duration-300 text-center sm:text-left'>
-							{link.name}
+							href='#home'
+							className='text-xl font-black tracking-tighter text-white mb-2'>
+							DHEERU<span className='text-indigo-500'>.</span>
 						</a>
-					))}
-				</nav>
-
-				{/* Social Media Links - More compact on mobile */}
-				<div className='flex flex-wrap justify-center items-center gap-3 sm:space-x-5'>
-					{socialLinks.map((social, index) => (
-						<a
-							key={index}
-							href={social.href}
-							target='_blank'
-							rel='noopener noreferrer'
-							className=' w-10 h-10  rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110'
-							style={{ color: social.color }}
-							aria-label={social.name}>
-							{social.icon}
-						</a>
-					))}
-				</div>
-
-				{/* Copyright - Stack on mobile */}
-				<div className='flex flex-col sm:flex-row items-center justify-center text-center sm:text-left'>
-					<div className='flex items-center space-x-3 mb-2 sm:mb-0 sm:mr-2'>
-						<div className='h-1 w-6 bg-indigo-500' />
-						<span className='text-indigo-400 uppercase text-xs tracking-widest font-medium'>
-							&copy; {currentYear}
-						</span>
+						<p className='text-gray-500 text-xs font-medium uppercase tracking-[0.2em]'>
+							Full Stack Developer
+						</p>
 					</div>
-					<p className='text-gray-500 font-medium'>
-						Dheeru Rajpoot. All rights reserved.
-					</p>
+
+					{/* Navigation Links */}
+					<nav className='flex flex-wrap justify-center gap-x-8 gap-y-4'>
+						{navLinks.map((link, index) => (
+							<a
+								key={index}
+								href={link.href}
+								className='text-sm font-bold text-gray-500 hover:text-white transition-colors duration-300 relative group'>
+								{link.name}
+								<span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full'></span>
+							</a>
+						))}
+					</nav>
+
+					{/* Copyright Section */}
+					<div className='flex flex-col items-center md:items-end'>
+						<div className='flex items-center gap-2 mb-1'>
+							<span className='text-white font-bold text-sm'>
+								&copy; {currentYear}
+							</span>
+							<div className='h-1 w-4 bg-indigo-500 rounded-full' />
+						</div>
+						<p className='text-gray-600 text-[10px] font-black uppercase tracking-widest'>
+							Handcrafted by Dheeru Rajpoot
+						</p>
+					</div>
 				</div>
 			</div>
 		</footer>
