@@ -19,8 +19,9 @@ function PortfolioHero() {
 
 	const roles = [
 		"Full Stack Developer",
-		"Frontend Developer",
+		"Frontend Engineer",
 		"Backend Developer",
+		"DevOps Practitioner",
 	];
 
 	const [roleIndex, setRoleIndex] = useState(0);
@@ -74,7 +75,7 @@ function PortfolioHero() {
 					<CardHeader className='flex bg-transparent items-center justify-center md:justify-start w-full space-x-3 mb-4 md:mb-6 p-0'>
 						<div className='h-1 w-8 md:w-10 bg-indigo-500 rounded-full' />
 						<span className='text-indigo-400 uppercase text-xs md:text-sm tracking-[0.2em] font-bold'>
-							Full Stack Developer
+							Building Digital Experiences
 						</span>
 					</CardHeader>
 
@@ -90,11 +91,11 @@ function PortfolioHero() {
 							</span>
 						</h1>
 						<p className='text-center px-2 md:px-0 md:text-left w-full text-base md:text-lg text-gray-400 mb-8 md:mb-10 max-w-xl leading-relaxed'>
-							I'm a passionate Full Stack Developer and Digital
-							Entrepreneur dedicated to building exceptional web
-							experiences. With expertise in the MERN Stack and
-							Next.js, I transform complex ideas into elegant,
-							functional digital solutions.
+							I craft scalable, high-performance web applications
+							using modern stacks like Next.js, React, Node.js,
+							and AWS. From seamless user interfaces to robust
+							backends, I transform vision into production-ready
+							digital solutions.
 						</p>
 					</CardBody>
 

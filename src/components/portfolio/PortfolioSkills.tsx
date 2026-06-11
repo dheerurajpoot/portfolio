@@ -12,6 +12,9 @@ import {
 	Globe,
 	Cloud,
 	Terminal,
+	Zap,
+	Activity,
+	GitBranch,
 } from "lucide-react";
 
 function PortfolioSkills() {
@@ -118,6 +121,30 @@ function PortfolioSkills() {
 			level: "Advanced",
 		},
 		{ name: "Postman", icon: Server, category: "Tools", level: "Advanced" },
+		{
+			name: "AWS",
+			icon: Cloud,
+			category: "DevOps",
+			level: "Intermediate",
+		},
+		{
+			name: "CI/CD",
+			icon: GitBranch,
+			category: "DevOps",
+			level: "Advanced",
+		},
+		{
+			name: "WebSocket",
+			icon: Activity,
+			category: "Backend",
+			level: "Advanced",
+		},
+		{
+			name: "REST APIs",
+			icon: Zap,
+			category: "Backend",
+			level: "Expert",
+		},
 	];
 
 	const categories = [
